@@ -18,10 +18,10 @@ export default function Login() {
       });
 
       if (email === "admin" && password === "admin") {
-        navigate("/HomeAdmin");}
-      else if (response.data == "exist") {
+        navigate("/HomeAdmin");
+      } else if (response.data === "exist") {
         navigate("/Home", { state: { id: email } });
-      } else if (response.data == "notexist") {
+      } else if (response.data === "notexist") {
         alert("User has not signed up");
       }
     } catch (error) {
@@ -57,7 +57,10 @@ export default function Login() {
             style={{ backgroundColor: 'white', width: '425px', height: '60px', borderRadius: '20px', marginTop: '4px', marginLeft: '22px', paddingLeft: '50px', color: '#D4D0D0' }}
           />
         </div>
-        <button type='submit' onClick={submit} style={{ backgroundColor: 'black', marginLeft: '46.8%', marginTop: '50px', borderRadius: '15px', fontWeight: '500', padding: '5px 15px 5px 15px', fontSize: '20px',color:'white' }}>Login</button>
+        <button type='submit' onClick={submit} style={{ backgroundColor: 'black', marginLeft: '46.8%', marginTop: '50px', borderRadius: '15px', fontWeight: '500', padding: '5px 15px 5px 15px', fontSize: '20px', color: 'white' }}>Login</button>
+        <p style={{ textAlign: 'center', marginTop: '10px' }}>
+          Don't have an account? <a href="/Signup">Sign up</a>
+        </p>
       </div>
     </div>
   );

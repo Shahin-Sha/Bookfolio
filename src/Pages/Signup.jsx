@@ -18,10 +18,11 @@ export default function Login() {
         password
       });
 
-      if (response.data == "exist") {
+      if (response.data === "exist") {
         alert("User already exists");
-      } else if (response.data == "notexist") {
-        navigate("/Home", { state: { id: email } });
+      } else if (response.data === "notexist") {
+        navigate("/", { state: { id: email } });
+        alert("Sign up completed")
       }
     } catch (error) {
       alert("Wrong details");
@@ -57,6 +58,9 @@ export default function Login() {
         >
           Sign Up
         </button>
+        <p style={{ textAlign: 'center', marginTop: '10px' }}>
+          Already have an account? <a href="/">Login</a>
+        </p>
       </div>
     </div>
   );

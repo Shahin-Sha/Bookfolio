@@ -22,7 +22,7 @@ app.get("/", cors(), (req,res)=> {
 app.post("/", async(req,res)=> {
     const { email, password } = req.body
     try{
-        const check = await collection.findOne({ email: email })
+        const check = await collection.findOne({ email: email,password: password })
         if(check) {
             res.json("exist")
         }
@@ -73,6 +73,26 @@ const productSchema = new mongoose.Schema({
       type: String,
       required: true,
     },
+    bookCategory: {
+      type: String,
+      required: true,
+    },
+    authorImage: {
+      type: String,
+      required: true,
+    },
+    bookPrice:{
+      type: String,
+      required :true,
+    },
+    bookDetail:{
+      type:String,
+      required:true,
+    },
+    bookName:{
+      type:String,
+      required:true,
+    },
   });
   
   // Create a model for products using the schema
@@ -85,11 +105,16 @@ const productSchema = new mongoose.Schema({
   
   // POST route for adding a product
   app.post("/api/products",cors(), (req, res) => {
-    const { authorName, bookImage } = req.body;
+    const { authorName, bookImage , bookCategory ,authorImage,bookPrice ,bookDetail ,bookName} = req.body;
   
     const newProduct = new Product({
       authorName: authorName,
       bookImage: bookImage,
+      bookCategory: bookCategory,
+      authorImage: authorImage,
+      bookPrice: bookPrice,
+      bookDetail: bookDetail,
+      bookName: bookName,
     });
   
     newProduct
@@ -114,6 +139,24 @@ const productSchema = new mongoose.Schema({
       });
   });
 
+
+  app.get("/api/products/:productId", cors(), (req, res) => {
+    const productId = req.params.productId;
+  
+    Product.findById(productId)
+      .then((product) => {
+        if (!product) {
+          res.status(404).json("Product not found");
+        } else {
+          res.json(product);
+        }
+      })
+      .catch((error) => {
+        console.error("Failed to retrieve product:", error);
+        res.status(500).json("Failed to retrieve product");
+      });
+  });
+  
   
 
 

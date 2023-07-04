@@ -1,7 +1,7 @@
 const mongoose=require("mongoose")
 mongoose.connect("mongodb+srv://shahinshakilinadan:oRR1Y4wjnQK4gkrb@bookfolio.uofqvpw.mongodb.net/")
 .then(()=>{
-console.log('connected')
+console.log('dB connected')
 })
 .catch(()=>{
     console.log('not connected')
